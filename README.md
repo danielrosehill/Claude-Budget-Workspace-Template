@@ -1,6 +1,8 @@
 # Claude Household Budget Management Workspace
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Project-8A2BE2?logo=anthropic)](https://github.com/anthropics/claude-code)
+[![Claude Code Projects](https://img.shields.io/badge/Claude%20Code-Projects%20Index-blue?logo=github)](https://github.com/danielrosehill/Claude-Code-Repos-Index)
+[![Master Index](https://img.shields.io/badge/GitHub-Master%20Index-green?logo=github)](https://github.com/danielrosehill/Github-Master-Index)
 
 A comprehensive workspace template for managing household budgets using Claude Code CLI with AI-assisted analysis, reporting, and financial planning.
 
