@@ -4,62 +4,63 @@
 [![Claude Code Projects](https://img.shields.io/badge/Claude%20Code-Projects%20Index-blue?logo=github)](https://github.com/danielrosehill/Claude-Code-Repos-Index)
 [![Master Index](https://img.shields.io/badge/GitHub-Master%20Index-green?logo=github)](https://github.com/danielrosehill/Github-Master-Index)
 
-A comprehensive workspace template for managing household budgets using Claude Code CLI with AI-assisted analysis, reporting, and financial planning.
+A workspace template for household budget management using Claude Code CLI.
 
 ## Overview
 
-This template provides a complete system for household budget management including transaction processing, budget creation, expense analysis, financial goal tracking, and comprehensive reporting—all powered by Claude Code's AI agents and slash commands.
+This template provides a structured file system and configuration for managing household budgets through Claude Code. It includes predefined agents, slash commands, and directory structures for transaction processing, budget creation, expense analysis, goal tracking, and report generation.
 
-## Features
+## Technical Components
 
-- **AI-Assisted Budget Creation**: Generate realistic monthly budgets based on income, historical spending, and financial goals
-- **Automated Transaction Processing**: Import and categorize bank transactions with intelligent categorization
-- **Comprehensive Financial Reports**: Monthly, quarterly, and annual reports with insights and trends
-- **Goal Tracking**: Set and monitor progress toward savings goals, debt payoff, and major purchases
-- **Spending Analysis**: Deep-dive analyses identifying patterns and optimization opportunities
-- **Scenario Planning**: Model financial decisions and life events
-- **Privacy-First**: All data stays local on your machine
+- **Agents**: Six specialized agents for budget creation, expense analysis, goal tracking, transaction processing, report generation, and financial planning
+- **Slash Commands**: Pre-configured commands for common budget management operations
+- **Transaction Processing**: Import and categorize transaction data from CSV/OFX/QFX/JSON formats
+- **Report Generation**: Templated monthly, quarterly, and annual financial reports
+- **Goal Tracking**: Structured tracking for savings targets and debt payoff plans
+- **Local Data Storage**: All financial data stored locally in structured directories
 
-## Quick Start
+## Installation
 
-### 1. Clone or Fork This Repository
+### 1. Clone Repository
 
 ```bash
 cd ~/repos/github
-git clone [this-repo-url] my-household-budget
+git clone [repository-url] my-household-budget
 cd my-household-budget
 ```
 
-### 2. Initial Setup
+### 2. Initialize Workspace
 
-Open Claude Code in this directory and run the setup wizard:
+Open Claude Code in the directory and execute the setup command:
 
 ```bash
 /setup-workspace
 ```
 
-This interactive setup will configure:
-- Household profile and preferences
+This configures:
+- Household profile (currency, members, location)
 - Income sources and amounts
-- Expense categories and budgets
-- Financial goals and savings targets
-- Bill due dates and payment schedules
+- Expense categories and initial budget allocations
+- Financial goals and target dates
+- Recurring bill schedules
 
-### 3. Create Your First Budget
+### 3. Create Initial Budget
 
 ```bash
 /create-monthly-budget
 ```
 
-### 4. Import Transactions (Optional)
+### 4. Import Transaction Data (Optional)
 
-Place transaction exports from your bank/credit card in `transactions/import/`, then:
+Place transaction export files in `transactions/import/`:
 
 ```bash
 /process-transactions
 ```
 
-### 5. Generate Monthly Report
+Supported formats: CSV, OFX, QFX, JSON
+
+### 5. Generate First Report
 
 ```bash
 /monthly-report
@@ -117,49 +118,39 @@ Place transaction exports from your bank/credit card in `transactions/import/`, 
 └── README.md             # This file
 ```
 
-## Available Agents
+## Agents
+
+Six specialized agents are configured in `.claude/agents/`:
 
 ### budget-architect
-Creates comprehensive monthly and annual budgets based on income, spending history, and goals.
+Generates monthly and annual budgets using income data, historical spending patterns, and defined financial goals.
 
-**Use when:** Creating or modifying budgets
-
-**Example:** "I need to create my December budget"
+**Primary function:** Budget creation and modification
 
 ### expense-analyst
-Analyzes spending patterns, identifies trends, and finds savings opportunities.
+Analyzes transaction data to identify spending patterns, trends, and optimization opportunities.
 
-**Use when:** Understanding where money goes or finding ways to save
-
-**Example:** "I went over budget last month. What happened?"
+**Primary function:** Spending pattern analysis
 
 ### goal-tracker
-Manages financial goals including savings targets and debt payoff plans.
+Manages savings targets, debt payoff schedules, and tracks progress toward defined financial objectives.
 
-**Use when:** Setting new goals or checking progress
-
-**Example:** "How am I doing on my emergency fund goal?"
+**Primary function:** Financial goal management
 
 ### transaction-processor
-Imports and categorizes transaction data from banks and credit cards.
+Imports transaction files and applies categorization rules. Learns from manual corrections to improve categorization accuracy.
 
-**Use when:** Processing downloaded transactions
-
-**Example:** "I downloaded my bank transactions for November"
+**Primary function:** Transaction import and categorization
 
 ### report-generator
-Creates comprehensive financial reports with insights and recommendations.
+Generates financial reports using predefined templates. Outputs include monthly summaries, quarterly reviews, and annual analyses.
 
-**Use when:** Need monthly summaries or annual reviews
-
-**Example:** "Can you create my November financial report?"
+**Primary function:** Report generation
 
 ### financial-advisor
-Provides strategic financial guidance and scenario planning.
+Provides strategic financial analysis and scenario modeling for major financial decisions.
 
-**Use when:** Making major financial decisions
-
-**Example:** "Should I pay off student loans or invest?"
+**Primary function:** Financial planning and scenario analysis
 
 ## Available Slash Commands
 
@@ -191,213 +182,210 @@ Provides strategic financial guidance and scenario planning.
 - `/savings-plan` - Optimize savings allocation
 - `/financial-scenario` - Model what-if scenarios
 
-## Typical Workflows
+## Workflows
 
 ### Monthly Budget Cycle
 
-1. **Beginning of Month**: Create next month's budget
+1. Create budget for upcoming month:
    ```bash
    /create-monthly-budget
    ```
 
-2. **Throughout Month**: Import and process transactions weekly
+2. Import and process transactions (weekly recommended):
    ```bash
-   # Place transactions in transactions/import/
    /process-transactions
    ```
 
-3. **End of Month**: Generate comprehensive report
+3. Generate end-of-month report:
    ```bash
    /monthly-report
    ```
 
-4. **Review**: Analyze spending and adjust next budget
+4. Analyze spending variances:
    ```bash
    /analyze-spending
    ```
 
-### Setting Up a New Financial Goal
+### Financial Goal Setup
 
-1. Define the goal
+1. Define goal parameters:
    ```bash
    /set-financial-goal
    ```
 
-2. Ensure it's funded in your budget
+2. Allocate budget toward goal:
    ```bash
    /create-monthly-budget
    ```
 
-3. Track progress monthly
+3. Monitor progress:
    ```bash
    /review-goals
    ```
 
-### Major Financial Decision
+### Financial Decision Analysis
 
-1. Gather all context
+1. Generate current financial state:
    ```bash
    /monthly-report
    /review-goals
    ```
 
-2. Model the scenario
-   ```bash
-   # Ask: "What if I...?" and use financial-advisor agent
-   ```
+2. Model scenario using financial-advisor agent
 
-3. Make informed decision with full financial picture
+3. Execute decision based on analysis output
 
-## Best Practices
+## Usage Guidelines
 
-### Regular Cadence
+### Maintenance Schedule
 
 **Weekly**:
-- Import transactions
-- Check spending vs. budget
-- Note any unusual expenses
+- Import transaction data
+- Verify budget compliance
+- Document anomalous expenses
 
 **Monthly**:
-- Generate comprehensive report
-- Review goal progress
-- Create next month's budget
-- Analyze spending patterns
+- Execute report generation
+- Review goal progress metrics
+- Generate next month's budget
+- Analyze variance between budget and actual spending
 
 **Quarterly**:
-- Deep-dive financial review
-- Adjust goals if needed
-- Optimize budget allocations
+- Perform comprehensive financial review
+- Adjust goal parameters if necessary
+- Optimize budget allocations based on trends
 
 **Annually**:
-- Year-end comprehensive review
-- Tax preparation
-- Set new year goals
-- Annual budget planning
+- Execute year-end financial analysis
+- Prepare tax-related expense reports
+- Define annual financial objectives
+- Create annual budget framework
 
 ### Data Management
 
-**Transaction Imports**:
-- Import regularly (weekly minimum)
-- Categorize promptly
-- Review automated categorization for errors
-- Keep raw files as backup
+**Transaction Processing**:
+- Import frequency: Weekly minimum
+- Categorize transactions promptly after import
+- Review automated categorization for accuracy
+- Retain raw import files for reference
 
 **Version Control**:
-- Commit budgets when created
-- Commit monthly reports
-- Add transaction files to .gitignore
-- Regular commits for audit trail
+- Commit budgets upon creation or significant modification
+- Commit generated reports for audit trail
+- Configure .gitignore to exclude sensitive transaction files
+- Maintain regular commit schedule for tracking changes
 
-**Privacy**:
-- Never commit files with full account numbers
-- Use 1Password for credentials
-- Review .gitignore before pushing
-- Consider private repo for this workspace
+**Privacy Considerations**:
+- Exclude files containing full account numbers from commits
+- Store credentials in password manager (e.g., 1Password)
+- Review .gitignore configuration before remote push operations
+- Use private repository for workspace containing actual financial data
 
-### Financial Discipline
+### Budget Configuration
 
-**Budget Realism**:
-- Base on actual spending, not wishes
-- Include 5-10% buffer for unexpected
-- Adjust as you learn your patterns
-- Don't be too restrictive
+**Budget Construction**:
+- Base allocations on historical spending data
+- Include buffer allocation (5-10%) for unplanned expenses
+- Adjust allocations iteratively based on actual patterns
+- Avoid overly restrictive allocations that reduce compliance
 
-**Goal Setting**:
-- Use SMART criteria
-- Prioritize properly (emergency fund first)
-- Track consistently
-- Celebrate milestones
+**Goal Configuration**:
+- Use SMART criteria (Specific, Measurable, Achievable, Relevant, Time-bound)
+- Prioritize goals appropriately (emergency fund before discretionary savings)
+- Track progress consistently
+- Review and adjust goals quarterly
 
-**Spending Awareness**:
-- Review transactions regularly
-- Understand your triggers
-- Plan for irregular expenses
-- Build sinking funds
+**Transaction Review**:
+- Review imported transactions regularly
+- Identify spending pattern triggers
+- Plan budget allocations for irregular but predictable expenses
+- Create sinking funds for known future expenses
 
 ## Customization
 
 ### Adding Custom Categories
 
-1. Edit `context.md` to add category
-2. Update budget templates if needed
-3. Recategorize past transactions if desired
+1. Modify `context.md` to include new category definition
+2. Update budget templates in `budgets/templates/` if necessary
+3. Recategorize historical transactions if required
 
 ### Creating Custom Reports
 
 1. Define report structure in `reports/templates/`
-2. Create slash command in `.claude/commands/`
-3. Document in this README
+2. Create corresponding slash command in `.claude/commands/`
+3. Update README.md with command documentation
 
-### Modifying Agents
+### Modifying Agent Behavior
 
-Edit agent files in `.claude/agents/` to adjust:
-- Analysis methodology
-- Report formats
-- Recommendation logic
-- Processing rules
+Edit agent configuration files in `.claude/agents/` to modify:
+- Analysis algorithms
+- Output formatting
+- Recommendation criteria
+- Processing rules and categorization logic
 
 ## MCP Integration
 
-This workspace can be enhanced with MCP (Model Context Protocol) servers for:
-- Direct bank/credit card data access
-- Spreadsheet integration
-- Calendar reminders
-- Chart generation
-- Tax preparation exports
+MCP (Model Context Protocol) servers can extend workspace functionality:
+- Bank/credit card data access APIs
+- Spreadsheet integration (Google Sheets, Excel)
+- Calendar systems for bill reminders
+- Visualization libraries for chart generation
+- Tax preparation software export interfaces
 
-See `mcp.md` for detailed integration guidance.
+See `mcp.md` for integration implementation details.
 
 ## Troubleshooting
 
-### Categorization Issues
-**Problem**: Transactions categorized incorrectly
-**Solution**: Manually correct them - the system learns from your corrections
+### Transaction Categorization Errors
+**Issue**: Transactions assigned to incorrect categories
+**Resolution**: Manually correct categorization. The transaction-processor agent learns from manual corrections to improve future categorization accuracy.
 
-### Budget Too Tight
-**Problem**: Consistently exceeding budget
-**Solution**: Increase allocations based on actual spending patterns. Budget should be realistic, not aspirational.
+### Budget Allocation Insufficient
+**Issue**: Consistent budget overruns in specific categories
+**Resolution**: Increase budget allocations based on historical spending patterns. Budget allocations should reflect actual spending behavior rather than aspirational targets.
 
-### Goals Not Tracking
-**Problem**: Goal progress not updating
-**Solution**: Ensure goal account is linked properly in context.md
+### Goal Progress Tracking Failure
+**Issue**: Goal progress not updating correctly
+**Resolution**: Verify goal-to-account linkage in `context.md`. Ensure account identifiers match configured goal tracking parameters.
 
-### Missing Transactions
-**Problem**: Imported file incomplete
-**Solution**: Check export settings from bank, ensure all accounts included
+### Incomplete Transaction Import
+**Issue**: Transaction import missing expected transactions
+**Resolution**: Verify export settings in source financial institution. Ensure export includes all accounts and complete date range.
 
 ## Privacy & Security
 
-**Local Data**:
-- All financial data stays on your machine
-- No cloud synchronization of sensitive data
-- Complete control over your information
+**Local Data Storage**:
+- All financial data stored locally on the filesystem
+- No automatic cloud synchronization
+- User maintains complete control over data access and retention
 
 **Version Control**:
-- Use private repository if pushing to remote
-- Sensitive files listed in .gitignore
-- Never commit full account numbers
+- Configure repository as private if pushing to remote hosting
+- Sensitive files must be included in .gitignore
+- Never commit files containing full account numbers or credentials
 
-**Credentials**:
-- Store API keys in 1Password
-- Use environment variables for sensitive data
-- Review MCP configurations for security
+**Credential Management**:
+- Store API keys and credentials in password manager (e.g., 1Password)
+- Use environment variables for sensitive configuration data
+- Review MCP server configurations for credential exposure
+
+**Security Development Status**:
+This is an active area of development. Future versions may include:
+- Encrypted local storage for sensitive financial data
+- Integration with system keyring services
+- Encrypted credential storage patterns
+
+Note: Encrypted secrets storage is a work in progress and may be integrated into this template/pattern in future releases.
 
 ## License
 
-MIT License - Feel free to fork and customize for your needs
+MIT License
 
-## Support & Contributing
+## Support
 
 - **Issues**: Report bugs or request features via GitHub issues
-- **Documentation**: Claude Code docs at [docs.claude.com](https://docs.claude.com)
-- **Community**: Share your customizations and improvements
+- **Documentation**: Claude Code documentation available at [docs.claude.com](https://docs.claude.com)
 
-## Acknowledgments
+## Technical Details
 
-Built for Claude Code CLI by Anthropic. Inspired by household budget management best practices and structured workspace organization principles.
-
----
-
-**Ready to take control of your household finances?**
-
-Start with `/setup-workspace` and build your path to financial clarity!
+Built for Claude Code CLI by Anthropic. Implements structured workspace organization for budget management with AI-assisted analysis and reporting.
